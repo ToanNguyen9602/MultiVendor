@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	    <div class="top-brand py-25" th:fragment="content">
+        <div class="container">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2 class="title">Top Brands</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row g-lg-3 g-2">
+                        <div class="col-md-2 col-sm-3 col-4" th:each="brandSection : ${section.brandSections}" th:with="brand = ${brandSection.brand}">
+                            <div class="logo-box">
+                                <a th:href="@{'/brand/' + ${brand.id}}"><img th:src="@{${brand.logoPath}}" alt="brand"></a>
+                            </div>
+                            
+                        </div>  
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+</html>

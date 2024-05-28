@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content" th:remove="tag">
+	<div class="row" id="divProductImages">
+		<div class="col border m-3 p-2">
+			<div><label>Main Image: [[${product.mainImage}]]</label></div>
+			<div class="m-2">
+				<img id="thumbnail" alt="Main image preview" class="img-fluid"
+					th:src="@{${product.mainImagePath}}"/>
+			</div>
+			<div>
+				<input type="file" id="fileImage" name="fileImage"
+					th:required="${product.mainImage == null}"
+					accept="image/png, image/jpeg" />
+			</div>
+			<input type="hidden" th:field="*{mainImage}" />
+		</div>
+		
+		<th:block th:each="productImage, status : ${product.images}">
+		<div class="col border m-3 p-2" th:id="'divExtraImage' + ${status.index}">
+			<div>
+				<label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
+				<a name="linkRemoveExtraImage" 
+					class="btn fas fa-times-circle fa-2x icon-dark float-right"
+					title="Remove this image"></a>				
+			</div>
+			<div class="m-2">
+				<img th:id="'extraThumbnail' + ${status.index}" 
+					th:alt="'Extra image #' + ${status.index + 1} + ' preview'" class="img-fluid"
+					th:src="@{${productImage.imagePath}}"/>
+			</div>
+			<div>
+				<input type="file" name="extraImage" 
+					accept="image/png, image/jpeg" />
+			</div>
+			
+			<input type="hidden" name="imageIDs" th:id="'imageId' + ${status.index}"
+				th:value="${productImage.id}" />
+			<input type="hidden" name="imageNames" th:id="'imageName' + ${status.index}"
+				th:value="${productImage.name}" />
+			
+		</div>		
+		</th:block>
+		
+		<div class="col border m-3 p-2" th:id="'divExtraImage' + ${numberOfExistingExtraImages}">
+			<div th:id="'extraImageHeader' + ${numberOfExistingExtraImages}">
+				<label>Extra Image #[[${numberOfExistingExtraImages + 1}]]:</label>
+			</div>
+			<div class="m-2">
+				<img th:id="'extraThumbnail' + ${numberOfExistingExtraImages}" 
+					th:alt="'Extra image' + ${numberOfExistingExtraImages} + ' preview'" class="img-fluid"
+					th:src="@{/images/image-thumbnail.png}"/>
+			</div>
+			<div>
+				<input type="file" name="extraImage" 
+					accept="image/png, image/jpeg" />
+			</div>
+		</div>		
+	</div>	
+</div>
+<script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+</html>

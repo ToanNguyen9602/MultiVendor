@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
+<body class="inner">
+    <!-- preloader begin -->
+    <div class="preloader">
+        <img th:src="@{/images/loader.gif}" alt="Gif">
+    </div>
+    <!-- preloader end -->
+
+   
+    <!--------------------------------- HEADER SECTION START --------------------------------->
+    <span th:replace="header_section2:: content"></span>
+    <!--------------------------------- HEADER SECTION END --------------------------------->
+
+	
+	 <!--------------------------------- CONTACT START --------------------------------->
+    <div class="contact py-120">
+        <div class="container">
+            <div>
+				<h2 class="text-center">[[${article.title}]]</h2>
+			</div>
+	<br>
+	        <div th:utext="${article.content}" class=" p-2 m-2"></div>
+        </div>
+    </div>
+    <!--------------------------------- CONTACT END --------------------------------->
+
+
+    <!--------------------------------- FOOTER SECTION START --------------------------------->
+     <span th:replace="footer:: footer"></span>
+    <!--------------------------------- FOOTER SECTION END --------------------------------->
+    <script th:src="@{/vendor/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/vendor/js/jquery.nice-select.min.js}"></script>
+    <script th:src="@{/vendor/js/jquery.flagstrap.min.js}"></script>
+    <script th:src="@{/vendor/js/slick.min.js}"></script>
+    <script th:src="@{/vendor/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/vendor/js/jquery.syotimer.min.js}"></script>
+    <script th:src="@{/vendor/js/jquery-modal-video.min.js}"></script>
+    <script th:src="@{/vendor/js/apexcharts.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/account.js}"></script>
+    <script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+
+</html>

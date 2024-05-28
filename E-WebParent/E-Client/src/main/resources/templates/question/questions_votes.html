@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>				
+	<div th:fragment="content" class="row m-2">
+		<div class="col">
+			<th:block th:each="question : ${listQuestions}">
+			<div class="row">
+				<div class="col-xs"><b>Question:</b> &nbsp;
+				<a class="linkVoteQuestion fa-thumbs-up"
+						th:classappend="${question.upvotedByCurrentCustomer ? 'fas' : 'far'}"
+						th:id="'linkVoteUp-question-' + ${question.id}"
+						th:questionId="${question.id}"
+					   	th:href="@{'/vote_question/' + ${question.id} + '/up'}"></a>
+					   	
+					   	<span th:id="'voteCount-question-' + ${question.id}">[[${question.votes}]] Votes</span>
+					   	<a class="linkVoteQuestion fa-thumbs-down"
+						th:classappend="${question.downvotedByCurrentCustomer ? 'fas' : 'far'}"
+						th:id="'linkVoteDown-question-' + ${question.id}"
+						th:questionId="${question.id}"
+					   	th:href="@{'/vote_question/' + ${question.id} + '/down'}"></a>
+					   	</div>						
+				
+										
+			</div>
+			<div class="row"><div class="col">[[${question.questionContent}]]</div></div>
+			<div class="row">
+				<div class="col ml-4">
+					<small>[[${question.asker.fullName}]], <div th:replace="fragments :: format_time(${question.askTime})"></div></small>
+				</div>
+			</div>
+			
+			<th:block th:if="${question.answered == true}">
+			<div class="row"><div class="col"><b>Answer:</b></div></div>
+			<div class="row"><div class="col">[[${question.answer}]]</div></div>
+			<div class="row"><div class="col ml-4"><small>[[${question.answerer.fullName}]], <div th:replace="fragments :: format_time(${question.answerTime})"></div></small></div></div>
+			</th:block>
+					
+			<div><hr/></div>
+			</th:block>
+		</div>
+	</div>
+	<script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+</html>

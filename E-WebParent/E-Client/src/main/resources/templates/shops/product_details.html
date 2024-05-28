@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content" id="divProductDetails">
+<th:block th:each="detail, status : ${product.details}">
+	<div class="row" th:id="'divDetail' + ${status.index}">
+		<input type="hidden" name="detailIDs" th:value="${detail.id}" />
+		  <div class="col">
+		    <input type="text" class="form-control" placeholder="Name" name="detailNames"
+		    th:value="${detail.name}" />
+		  </div>
+		  <div class="col">
+		    <input type="text" class="form-control" placeholder="Value" name="detailValues"
+		    th:value="${detail.value}" />
+		    <a name="linkRemoveDetail" class="btn fas fa-times-circle icon-red"
+			title="Remove this detail"></a>		
+		  </div>
+	</div>
+	</th:block>
+	
+	<div class="row" th:id="'divDetail' + ${#lists.size(product.details)}">
+	<input type="hidden" name="detailIDs" value="0" />
+	 <div class="col">
+		    <input type="text" class="form-control" placeholder="Name" name="detailNames"
+		maxlength="255" />
+		  </div>
+		  <div class="col">
+		    <input type="text" class="form-control" placeholder="Value" name="detailValues"
+		  maxlength="255" />
+		    
+		  </div>
+		  </div>
+</div>
+<script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+</html>

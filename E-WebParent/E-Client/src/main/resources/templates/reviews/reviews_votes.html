@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>				
+<div th:fragment="content">
+	
+                            <div class="review-title">
+                                <h3>Reviews</h3>
+                            </div>
+                            <div class="review-wrap">
+                            <th:block th:each="review : ${listReviews}">
+                                <div class="single-review">
+                                    <div class="user">
+                                        <div class="part-img">
+                                            <img th:src="@{/images/avatar.png}" alt="User" width="70px;">
+                                        </div>
+                                       
+                                        <div class="txt">
+                                            <span class="name">[[${review.customer.fullName}]]</span>
+                                            <span class="date"><div th:replace="fragments :: format_time(${review.reviewTime})"></div></span>          
+                                        </div>
+                                        <input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs" th:value="${review.rating}" />
+                                        
+                                    </div>
+                                    <div class="comment-area">
+                                    <h4><b>[[${review.headline}]]</b></h4>
+                                        <p>[[${review.comment}]]</p>
+                                        <div class="bottom-wrap">                                         
+                                            <div class="reaction">
+                                                <div class="col-xs ml-2">
+					<a class="linkVoteReview fa-thumbs-up"
+						th:classappend="${review.upvotedByCurrentCustomer ? 'fas' : 'far'}"
+						th:id="'linkVoteUp-review-' + ${review.id}"
+						th:reviewId="${review.id}"
+					   	th:href="@{'/vote_review/' + ${review.id} + '/up'}"></a>
+				</div>
+                                                <div class="col-xs ml-2">
+													<span th:id="'voteCount-review-' + ${review.id}">[[${review.votes}]] Votes</span>
+												</div>
+                                                <div class="col-xs ml-2">
+					<a class="linkVoteReview fa-thumbs-down"
+						th:classappend="${review.downvotedByCurrentCustomer ? 'fas' : 'far'}"
+						th:id="'linkVoteDown-review-' + ${review.id}"
+						th:reviewId="${review.id}"
+					   	th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
+				</div>	
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                     </th:block>
+                            </div>
+</div>
+<script>!function(s,u,b,i,z){var o,t,r,y;s[i]||(s._sbzaccid=z,s[i]=function(){s[i].q.push(arguments)},s[i].q=[],s[i]("setAccount",z),r=["widget.subiz.net","storage.googleapis"+(t=".com"),"app.sbz.workers.dev",i+"a"+(o=function(k,t){var n=t<=6?5:o(k,t-1)+o(k,t-3);return k!==t?n:n.toString(32)})(20,20)+t,i+"b"+o(30,30)+t,i+"c"+o(40,40)+t],(y=function(k){var t,n;s._subiz_init_2094850928430||r[k]&&(t=u.createElement(b),n=u.getElementsByTagName(b)[0],t.async=1,t.src="https://"+r[k]+"/sbz/app.js?accid="+z,n.parentNode.insertBefore(t,n),setTimeout(y,2e3,k+1))})(0))}(window,document,"script","subiz", "acrydwknifcqptuquqal")</script>
+</body>
+</html>
